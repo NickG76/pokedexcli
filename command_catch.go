@@ -8,7 +8,7 @@ import (
 
 func commandCatch(cfg *config, args ...string) error {
 	if len(args) != 1 {
-		return errors.New("You might give a pokemon you want to catch")
+		return errors.New("you must provide a pokemon name")
 	}
 
 	name := args[0]
@@ -17,10 +17,12 @@ func commandCatch(cfg *config, args ...string) error {
 		return err
 	}
 	catchChance := rand.Intn(100)
-	if catchChance < 70 {
-		fmt.Printf("Caught %v successfully!\n", pokemon.Species.Name)
+	fmt.Printf("Throwing a Pokeball at %s...\n", pokemon.Name)
+	if catchChance > 40 {
+		fmt.Printf("Caught %v successfully!\n", pokemon.Name)
 	} else {
-		fmt.Printf("Oh no! %v got away!\n", pokemon.Species.Name)
+		fmt.Printf("Oh no! %v got away!\n", pokemon.Name)
 	}
 	return nil
 }
+
