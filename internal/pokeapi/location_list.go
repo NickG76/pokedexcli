@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-// ListLocation - 
+// ListLocations -
 func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	url := baseURL + "/location-area"
 	if pageURL != nil {
@@ -19,6 +19,7 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 		if err != nil {
 			return RespShallowLocations{}, err
 		}
+
 		return locationsResp, nil
 	}
 
@@ -26,6 +27,7 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	if err != nil {
 		return RespShallowLocations{}, err
 	}
+
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
 		return RespShallowLocations{}, err
@@ -46,3 +48,4 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	c.cache.Add(url, dat)
 	return locationsResp, nil
 }
+

@@ -6,21 +6,19 @@ import (
 	"github.com/NickG76/pokedexcli/internal/pokecache"
 )
 
-// client
+// Client -
 type Client struct {
 	cache      pokecache.Cache
 	httpClient http.Client
 }
 
-
-// new client
+// NewClient -
 func NewClient(timeout, cacheInterval time.Duration) Client {
-	return Client {
-		cache: pokecache.NewCache(cacheInterval), 
+	return Client{
+		cache: pokecache.NewCache(cacheInterval),
 		httpClient: http.Client{
 			Timeout: timeout,
 		},
 	}
-
-
 }
+
