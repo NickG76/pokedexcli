@@ -18,7 +18,9 @@ func commandCatch(cfg *config, args ...string) error {
 	}
 	catchChance := rand.Intn(100)
 	if catchChance < 70 {
-		fmt.Printf("Caught %v successfully!", pokemon.Species.Name)
+		fmt.Printf("Caught %v successfully!\n", pokemon.Species.Name)
+	} else {
+		fmt.Printf("Oh no! %v got away!\n", pokemon.Species.Name)
 	}
 	return nil
 }
