@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
-	"github.com/bootdotdev/pokedexcli/internal/pokeapi"
+	"github.com/NickG76/pokedexcli/internal/pokeapi"
 )
 
 type config struct {
