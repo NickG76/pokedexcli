@@ -3,9 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/NickG76/pokedexcli/internal/pokeapi"
 	"os"
 	"strings"
-	"github.com/NickG76/pokedexcli/internal/pokeapi"
 )
 
 type config struct {
@@ -86,9 +86,14 @@ func getCommands() map[string]cliCommand {
 			callback:    commandExit,
 		},
 		"catch": {
-			name:         "catch",
+			name:        "catch",
 			description: "Catch a Pokemon",
 			callback:    commandCatch,
+		},
+		"inspect": {
+			name:        "inspect",
+			description: "See your Caught Pokemon",
+			callback:    commandInspect,
 		},
 	}
 }

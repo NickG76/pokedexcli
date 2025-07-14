@@ -18,11 +18,13 @@ func commandCatch(cfg *config, args ...string) error {
 	}
 	catchChance := rand.Intn(pokemon.BaseExperience)
 	fmt.Printf("Throwing a Pokeball at %s...\n", pokemon.Name)
-	if catchChance < 40 {
-		fmt.Printf("Caught %v successfully!\n", pokemon.Name)
-	} else {
-		fmt.Printf("Oh no! %v got away!\n", pokemon.Name)
+	if catchChance > 50 {
+		fmt.Printf("%s escaped!\n", pokemon.Name)
 	}
+
+	fmt.Printf("You caught %s!\n", pokemon.Name)
+	cfg.caughtPokemon[pokemon.Name] = pokemon
+
 	return nil
 }
 
