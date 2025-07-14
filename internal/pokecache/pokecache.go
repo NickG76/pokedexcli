@@ -5,10 +5,10 @@ import (
 	"time"
 )
 
-// Cache
+// Cache -
 type Cache struct {
-	cache  map[string]cacheEntry
-	mux  *sync.Mutex
+	cache map[string]cacheEntry
+	mux   *sync.Mutex
 }
 
 type cacheEntry struct {
@@ -16,8 +16,7 @@ type cacheEntry struct {
 	val       []byte
 }
 
-
-// new cache -
+// NewCache -
 func NewCache(interval time.Duration) Cache {
 	c := Cache{
 		cache: make(map[string]cacheEntry),
@@ -25,22 +24,22 @@ func NewCache(interval time.Duration) Cache {
 	}
 
 	go c.reapLoop(interval)
+
 	return c
 }
 
-// add -
+// Add -
 func (c *Cache) Add(key string, value []byte) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 	c.cache[key] = cacheEntry{
 		createdAt: time.Now().UTC(),
-		val:	   value,
+		val:       value,
 	}
 }
 
-
-// get - 
-func (c *Cache) get(key string) ([]byte, bool) {
+// Get -
+func (c *Cache) Get(key string) ([]byte, bool) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 	val, ok := c.cache[key]
@@ -63,3 +62,4 @@ func (c *Cache) reap(now time.Time, last time.Duration) {
 		}
 	}
 }
+
